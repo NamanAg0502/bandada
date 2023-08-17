@@ -123,7 +123,13 @@ export default function GeneralInfoStep({
                     size="lg"
                     value={_groupName ?? ""}
                     maxLength={31}
-                    onChange={(event) => setGroupName(event.target.value)}
+                    onChange={(event) => {
+                        if(event.target.value.length > 10){
+                            setGroupName(event.target.value)
+                        }else{
+                            Error("Invalid Description")
+                        }
+                    }
                     onBlur={() =>
                         onSubmit({ ...group, name: _groupName }, false)
                     }
